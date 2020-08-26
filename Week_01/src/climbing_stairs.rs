@@ -7,12 +7,13 @@ impl Solution {
         }
         let mut first = 1;
         let mut second = 2;
-        for _i in 3..n + 1 {
-            let third = first + second;
+        let mut third = 3;
+        for _i in 4..n + 1 {
+            third = first + second;
             first = second;
             second = third;
         }
-        return second;
+        return third;
     }
 }
 
