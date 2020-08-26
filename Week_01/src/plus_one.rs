@@ -24,21 +24,11 @@ mod tests {
 
     #[test]
     fn regular() {
-        let initial = vec![1, 2, 3];
-        let result = Solution::plus_one(initial);
-        let expected = vec![1, 2, 4];
-
-        let matching = expected.iter().zip(&result).filter(|&(a, b)| a == b).count();
-        assert!(matching == expected.len() && matching == result.len());
+        assert_eq!(Solution::plus_one(vec![1, 2, 3]), vec![1, 2, 4]);
     }
 
     #[test]
     fn plus_one_with_carry() {
-        let initial = vec![9, 9, 9];
-        let result = Solution::plus_one(initial);
-        let expected = vec![1, 0, 0, 0];
-
-        let matching = expected.iter().zip(&result).filter(|&(a, b)| a == b).count();
-        assert!(matching == expected.len() && matching == result.len());
+        assert_eq!(Solution::plus_one(vec![9, 9, 9]), vec![1, 0, 0, 0]);
     }
 }

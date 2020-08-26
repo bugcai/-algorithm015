@@ -22,9 +22,6 @@ mod tests {
     fn regular() {
         let mut array_with_zero = vec![0, 1, 0, 3, 12];
         Solution::move_zeroes(&mut array_with_zero);
-        let expected = vec![1, 3, 12, 0, 0];
-
-        let matching = expected.iter().zip(&array_with_zero).filter(|&(a, b)| a == b).count();
-        assert!(matching == expected.len() && matching == array_with_zero.len());
+        assert_eq!(array_with_zero, vec![1, 3, 12, 0, 0]);
     }
 }
