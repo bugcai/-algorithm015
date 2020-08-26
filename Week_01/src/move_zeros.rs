@@ -2,16 +2,14 @@ struct Solution;
 
 impl Solution {
     pub fn move_zeroes(nums: &mut Vec<i32>) {
-        let mut last_non_zero_found_at = 0;
-        let mut cur = 0;
-        while cur < nums.len() {
-            if nums[cur] != 0 {
-                if last_non_zero_found_at != cur {
-                    nums.swap(last_non_zero_found_at, cur);
+        let mut j = 0;
+        for i in 0..nums.len() {
+            if nums[i] != 0 {
+                if i != j {
+                    nums.swap(i, j);
                 }
-                last_non_zero_found_at += 1;
+                j += 1;
             }
-            cur += 1;
         }
     }
 }
