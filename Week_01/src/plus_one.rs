@@ -23,8 +23,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn regular() {
+    fn case1() {
         assert_eq!(Solution::plus_one(vec![1, 2, 3]), vec![1, 2, 4]);
+    }
+
+    #[test]
+    fn case2() {
+        assert_eq!(Solution::plus_one(vec![4, 3, 2, 1]), vec![4, 3, 2, 2]);
     }
 
     #[test]

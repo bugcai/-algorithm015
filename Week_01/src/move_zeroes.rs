@@ -19,7 +19,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn regular() {
+    fn case() {
         let mut array_with_zero = vec![0, 1, 0, 3, 12];
         Solution::move_zeroes(&mut array_with_zero);
         assert_eq!(array_with_zero, vec![1, 3, 12, 0, 0]);
