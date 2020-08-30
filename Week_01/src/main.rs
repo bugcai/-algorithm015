@@ -8,5 +8,7 @@ mod merge_two_sorted_lists;
 mod bulls_and_cows;
 mod word_pattern;
 mod design_circular_deque;
+mod remove_duplicates_from_sorted_array;
+mod merge_sorted_array;
 
 fn main() {}
