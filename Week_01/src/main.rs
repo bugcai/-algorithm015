@@ -10,5 +10,6 @@ mod word_pattern;
 mod design_circular_deque;
 mod remove_duplicates_from_sorted_array;
 mod merge_sorted_array;
+mod largest_rectangle_in_histogram;
 
 fn main() {}
