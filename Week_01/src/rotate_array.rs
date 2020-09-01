@@ -14,10 +14,10 @@ impl Solution {
                 let next = (prev + k) % len;
                 let temp = nums[next];
                 nums[next] = prev_num;
-                prev_num = temp;
                 prev = next;
+                prev_num = temp;
                 count += 1;
-                if start == prev {
+                if prev == start {
                     break;
                 }
             }
@@ -34,10 +34,11 @@ struct Solution2;
 /// 3. 反转后 n-k 个数字
 impl Solution2 {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {
-        let k = k as usize % nums.len();
-        Self::reverse(nums, 0, nums.len() - 1);
+        let len = nums.len() as usize;
+        let k = k as usize % len;
+        Self::reverse(nums, 0, len - 1);
         Self::reverse(nums, 0, k - 1);
-        Self::reverse(nums, k, nums.len() - 1);
+        Self::reverse(nums, k, len - 1);
     }
 
     fn reverse(nums: &mut Vec<i32>, start: usize, end: usize) {
