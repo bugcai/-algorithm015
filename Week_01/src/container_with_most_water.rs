@@ -1,16 +1,16 @@
 struct Solution;
 
+/// 双指针
 impl Solution {
     pub fn max_area(height: Vec<i32>) -> i32 {
-        let (mut i, mut j, mut max_area) = (0, height.len() - 1, 0);
-        while i < j {
-            let hi = height[i];
-            let hj = height[j];
-            max_area = max_area.max(hi.min(hj) * (j - i) as i32);
-            if hi < hj {
-                i += 1;
+        let (mut left, mut right, mut max_area) = (0, height.len() - 1, 0);
+        while left < right {
+            if height[left] < height[right] {
+                max_area = max_area.max((right - left) as i32 * height[left]);
+                left += 1;
             } else {
-                j -= 1;
+                max_area = max_area.max((right - left) as i32 * height[right]);
+                right -= 1;
             }
         }
         max_area
