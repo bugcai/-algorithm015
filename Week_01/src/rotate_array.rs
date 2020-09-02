@@ -5,17 +5,19 @@ impl Solution {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {
         let len = nums.len();
         let k = k as usize % len;
+        if k == 0 {
+            return;
+        }
         let mut count = 0;
         let mut start = 0;
         while count < len {
-            let mut prev = start;
-            let mut prev_num = nums[start];
+            let (mut prev, mut prev_num) = (start, nums[start]);
             loop {
                 let next = (prev + k) % len;
-                let temp = nums[next];
+                let next_num = nums[next];
                 nums[next] = prev_num;
                 prev = next;
-                prev_num = temp;
+                prev_num = next_num;
                 count += 1;
                 if prev == start {
                     break;
@@ -34,7 +36,7 @@ struct Solution2;
 /// 3. 反转后 n-k 个数字
 impl Solution2 {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {
-        let len = nums.len() as usize;
+        let len = nums.len();
         let k = k as usize % len;
         Self::reverse(nums, 0, len - 1);
         Self::reverse(nums, 0, k - 1);
