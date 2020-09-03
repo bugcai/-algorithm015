@@ -5,5 +5,6 @@ mod group_anagrams;
 mod two_sum;
 mod remove_outermost_parentheses;
 mod binary_tree_preorder_traversal;
+mod fizz_buzz;
 
 fn main() {}
