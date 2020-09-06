@@ -24,17 +24,32 @@ struct Solution;
 
 impl Solution {
     pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        fn helper(node: &Option<Rc<RefCell<TreeNode>>>, trace: &mut Vec<i32>) {
+            if let Some(tree_node) = node {
+                trace.push(tree_node.borrow().val);
+                helper(&tree_node.borrow().left, trace);
+                helper(&tree_node.borrow().right, trace);
+            }
+        }
         let mut result = Vec::new();
-        Self::preorder(&root, &mut result);
+        helper(&root, &mut result);
         result
     }
+}
 
-    fn preorder(node: &Option<Rc<RefCell<TreeNode>>>, trace: &mut Vec<i32>) {
-        if let Some(tree_node) = node {
-            trace.push(tree_node.borrow().val);
-            Self::preorder(&tree_node.borrow().left, trace);
-            Self::preorder(&tree_node.borrow().right, trace);
+struct Solution2;
+
+impl Solution2 {
+    pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let (mut result, mut stack) = (vec![], vec![root]);
+        while let Some(last) = stack.pop() {
+            if let Some(n) = last {
+                result.push(n.borrow().val);
+                stack.push(n.borrow().right.clone());
+                stack.push(n.borrow().left.clone());
+            }
         }
+        result
     }
 }
 
@@ -43,7 +58,5 @@ mod tests {
     use super::*;
 
     #[test]
-    fn case() {
-
-    }
+    fn case() {}
 }

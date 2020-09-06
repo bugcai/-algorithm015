@@ -4,15 +4,15 @@ impl Solution {
     pub fn remove_outer_parentheses(s: String) -> String {
         let mut result = String::new();
         let mut opened = 0;
-        for ch in s.chars() {
-            if ch == ')' {
-                opened -= 1;
-            }
-            if opened > 0 {
-                result.push(ch);
-            }
-            if ch == '(' {
+        for c in s.chars() {
+            if c == '(' {
                 opened += 1;
+            }
+            if opened > 1 {
+                result.push(c)
+            }
+            if c == ')' {
+                opened -= 1;
             }
         }
         result

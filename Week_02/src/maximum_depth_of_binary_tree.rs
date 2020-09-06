@@ -23,17 +23,15 @@ use std::cell::RefCell;
 struct Solution;
 
 impl Solution {
-    pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-        fn helper(node: &Option<Rc<RefCell<TreeNode>>>, trace: &mut Vec<i32>) {
-            if let Some(rc_node) = node {
-                helper(&rc_node.borrow().left, trace);
-                trace.push(rc_node.borrow().val);
-                helper(&rc_node.borrow().right, trace);
+    pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        match root {
+            None => 0,
+            Some(n) => {
+                let lh = Self::max_depth(n.borrow().left.clone());
+                let rh = Self::max_depth(n.borrow().right.clone());
+                lh.max(rh) + 1
             }
         }
-        let mut trace = vec![];
-        helper(&root, &mut trace);
-        trace
     }
 }
 
@@ -42,5 +40,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn case() {}
+    fn case() {
+
+    }
 }

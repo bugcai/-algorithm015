@@ -8,5 +8,7 @@ mod binary_tree_preorder_traversal;
 mod binary_tree_inorder_traversal;
 mod fizz_buzz;
 mod top_k_frequent_elements;
+mod maximum_depth_of_binary_tree;
+mod ugly_number;
 
 fn main() {}
