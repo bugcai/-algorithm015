@@ -5,7 +5,7 @@ impl Solution {
         fn render(board: &Vec<usize>, size: usize) -> Vec<String> {
             board.iter().map(|&i| { ".".repeat(i) + "Q" + &".".repeat(size - i - 1) }).collect()
         }
-        fn check(board: &[usize], queen_pos: (usize, usize)) -> bool {
+        fn is_valid(board: &[usize], queen_pos: (usize, usize)) -> bool {
             for i in 0..queen_pos.0 {
                 if queen_pos.1 == board[i] || (queen_pos.0 as i32 - i as i32).abs() == (queen_pos.1 as i32 - board[i] as i32).abs() {
                     return false;
@@ -19,7 +19,7 @@ impl Solution {
                 return;
             }
             for col in 0..size {
-                if check(&board[..], (row, col)) {
+                if is_valid(&board[..], (row, col)) {
                     board[row] = col;
                     back_track(size, row + 1, board, res);
                 }
