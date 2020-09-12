@@ -8,5 +8,6 @@ mod n_queens;
 mod majority_element;
 mod construct_binary_tree_from_preorder_and_inorder_traversal;
 mod combinations;
+mod powx_n;
 
 fn main() {}
