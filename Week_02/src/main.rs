@@ -9,7 +9,6 @@ mod binary_tree_inorder_traversal;
 mod fizz_buzz;
 mod top_k_frequent_elements;
 mod maximum_depth_of_binary_tree;
-mod ugly_number;
 mod three_sum;
 mod get_kth_magic_number_lcci;
 
