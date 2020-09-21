@@ -4,25 +4,26 @@ struct Solution;
 
 impl Solution {
     pub fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
-        let mut freq = HashMap::new();
+        let mut freqs = HashMap::new();
         for i in nums {
-            let count = freq.entry(i).or_insert(0);
-            *count += 1;
+            let freq_i = freqs.entry(i).or_insert(0);
+            *freq_i += 1;
         }
-        let mut heap = BinaryHeap::new();
+        let mut min_heap = BinaryHeap::new();
         let mut count = 0;
-        for (i, f) in freq {
+        for (num, freq) in freqs {
             if count < k {
-                heap.push((-f, i));
-            } else if let Some(&(minf, _)) = heap.peek() {
-                if minf > -f {
-                    heap.pop();
-                    heap.push((-f, i));
+                min_heap.push((-freq, num));
+                count += 1;
+            } else {
+                let min_freq = -(*min_heap.peek().unwrap()).0;
+                if freq > min_freq {
+                    min_heap.pop();
+                    min_heap.push((-freq, num));
                 }
             }
-            count += 1;
         }
-        heap.iter().map(|&(_, i)| i).collect()
+        min_heap.iter().map(|&(_, i)| i).collect()
     }
 }
 

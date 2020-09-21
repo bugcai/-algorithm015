@@ -2,18 +2,15 @@ struct Solution;
 
 impl Solution {
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
-        if nums.len() < 1 {
-            return 0;
-        }
-
-        let mut uniq_idx = 0usize;
+        if nums.len() == 0 { return 0; }
+        let mut uniqIdx = 0;
         for i in 1..nums.len() {
-            if nums[i] != nums[uniq_idx] {
-                uniq_idx += 1;
-                nums[uniq_idx] = nums[i];
+            if nums[i] != nums[uniqIdx] {
+                if i - uniqIdx > 1 { nums.swap(i, uniqIdx + 1); }
+                uniqIdx += 1;
             }
         }
-        uniq_idx as i32 + 1
+        (uniqIdx + 1) as i32
     }
 }
 
