@@ -5,12 +5,14 @@ impl Solution {
         if nums.len() == 0 { return 0; }
         let mut uniqIdx = 0;
         for i in 1..nums.len() {
-            if nums[i] != nums[uniqIdx] {
-                if i - uniqIdx > 1 { nums.swap(i, uniqIdx + 1); }
-                uniqIdx += 1;
+            if nums[i] != nums[uniq_idx] {
+                uniq_idx += 1;
+                if i != uniq_idx {
+                    nums.swap(i, uniq_idx);
+                }
             }
         }
-        (uniqIdx + 1) as i32
+        (uniq_idx + 1) as i32
     }
 }
 

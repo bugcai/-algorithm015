@@ -6,7 +6,7 @@ impl Solution {
         let mut freqs = vec![0; 26];
         s.as_bytes().iter().for_each(|&b| freqs[(b - b'a') as usize] += 1);
         t.as_bytes().iter().for_each(|&b| freqs[(b - b'a') as usize] -= 1);
-        freqs.iter().all(|&c| c == 0)
+        freqs.iter().all(|&f| f == 0)
     }
 }
 
