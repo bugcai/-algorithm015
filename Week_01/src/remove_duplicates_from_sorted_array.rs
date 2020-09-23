@@ -3,7 +3,7 @@ struct Solution;
 impl Solution {
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
         if nums.len() == 0 { return 0; }
-        let mut uniqIdx = 0;
+        let mut uniq_idx = 0;
         for i in 1..nums.len() {
             if nums[i] != nums[uniq_idx] {
                 uniq_idx += 1;
