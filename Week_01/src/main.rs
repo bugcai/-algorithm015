@@ -12,5 +12,6 @@ mod merge_sorted_array;
 mod largest_rectangle_in_histogram;
 mod rotate_array;
 mod two_sum;
+mod trapping_rain_water;
 
 fn main() {}
