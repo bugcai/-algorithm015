@@ -9,7 +9,7 @@ impl Solution {
             if h > max { max = h; } else { water[i] = max - h; }
         }
         max = 0;
-        for (j, &h) in height.iter().rev().enumerate() {
+        for &h in height.iter().rev() {
             let mut w = 0;
             if h > max { max = h; } else { w = max - h; }
             ans += w.min(water.pop().unwrap());
@@ -24,15 +24,11 @@ impl Solution2 {
     pub fn trap(height: Vec<i32>) -> i32 {
         if height.len() == 0 { return 0 as i32; }
 
-        let mut left = 0;
-        let mut left_max = 0;
-        let mut right_max = 0;
-        let mut right = height.len() - 1;
         let mut water = 0;
-
-        while left != right {
-            left_max = height[left].max(left_max);
-            right_max = height[right].max(right_max);
+        let (mut left, mut left_max, mut right, mut right_max) = (0, 0, height.len() - 1, 0);
+        while left < right {
+            left_max = left_max.max(height[left]);
+            right_max = right_max.max(height[right]);
 
             if left_max < right_max {
                 water += left_max - height[left];
@@ -42,7 +38,7 @@ impl Solution2 {
                 right -= 1;
             }
         }
-        water as i32
+        water
     }
 }
 
