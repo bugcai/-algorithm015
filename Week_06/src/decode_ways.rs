@@ -4,37 +4,19 @@ impl Solution {
     pub fn num_decodings(s: String) -> i32 {
         let bytes = s.as_bytes();
         if bytes[0] == b'0' { return 0; }
-        if bytes.len() == 1 { return 1; }
-        let mut dp = vec![0; bytes.len()];
-        dp[0] = 1;
-        let (first, second) = (bytes[0] - b'0', bytes[1] - b'0');
-        match (first, second) {
-            (1, 0) | (2, 0) => dp[1] = 1,
-            (_, 0) => return 0,
-            _ => {
-                let two_digit_num = first * 10 + second;
-                dp[1] = if two_digit_num > 26 { 1 } else { 2 };
-            }
+
+        let (mut pre, mut cur) = (1, 1);
+        for i in 1..bytes.len() {
+            let last_one = bytes[i] - b'0';
+            let last_two = (bytes[i - 1] - b'0') * 10 + last_one;
+            let mut tmp = 0;
+            if last_one != 0 { tmp += cur; }
+            if last_two >= 10 && last_two <= 26 { tmp += pre; }
+            pre = cur;
+            cur = tmp;
+            if cur == 0 { return 0; }
         }
-        for i in 2..bytes.len() {
-            let (pre, now) = (bytes[i - 1] - b'0', bytes[i] - b'0');
-            match (pre, now) {
-                (1, 0) | (2, 0) => dp[i] = dp[i - 2],
-                (_, 0) => return 0,
-                (0, _) => dp[i] = dp[i - 1],
-                _ => {
-                    let two_digit_num = pre * 10 + now;
-                    if two_digit_num == 10 || two_digit_num == 20 {
-                        dp[i] = dp[i - 2];
-                    } else if two_digit_num > 26 {
-                        dp[i] = dp[i - 1];
-                    } else {
-                        dp[i] = dp[i - 1] + dp[i - 2];
-                    }
-                }
-            }
-        }
-        dp[bytes.len() - 1]
+        cur
     }
 }
 
