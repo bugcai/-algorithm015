@@ -11,5 +11,6 @@ mod top_k_frequent_elements;
 mod maximum_depth_of_binary_tree;
 mod three_sum;
 mod get_kth_magic_number_lcci;
+mod ugly_number_ii;
 
 fn main() {}

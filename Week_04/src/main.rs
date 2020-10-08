@@ -6,5 +6,6 @@ mod search_a_2d_matrix;
 mod find_minimum_in_rotated_sorted_array;
 mod number_of_islands;
 mod valid_perfect_square;
+mod jump_game;
 
 fn main() {}
