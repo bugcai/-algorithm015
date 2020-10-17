@@ -30,8 +30,9 @@ impl Solution {
 
         let (mut rows, mut columns, mut boxes) = (vec![0_u32; 9], vec![0_u32; 9], vec![0_u32; 9]);
         let mut empties = vec![];
-        board.iter().enumerate().for_each(|(i, row)| {
-            row.iter().enumerate().for_each(|(j, &value)| {
+        for i in 0..9 {
+            for j in 0..9 {
+                let value = board[i][j];
                 if value == '.' {
                     empties.push((i, j));
                 } else {
@@ -41,8 +42,8 @@ impl Solution {
                     columns[j] |= mask;
                     boxes[box_index] |= mask;
                 }
-            })
-        });
+            }
+        }
 
         dfs(board, &mut empties, &mut rows, &mut columns, &mut boxes);
     }
