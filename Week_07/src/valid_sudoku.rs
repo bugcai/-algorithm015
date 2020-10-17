@@ -2,21 +2,22 @@ struct Solution;
 
 impl Solution {
     pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
-        let mut rows = vec![vec![0; 9]; 9];
-        let mut columns = vec![vec![0; 9]; 9];
-        let mut boxes = vec![vec![0; 9]; 9];
+        let (mut rows, mut columns, mut boxes) = (vec![0; 9], vec![0; 9], vec![0; 9]);
 
-        for row in 0..9 {
-            for col in 0..9 {
-                if board[row][col] == '.' { continue; }
-                let val = board[row][col] as usize - '1' as usize;
-                let box_index = (row / 3) * 3 + col / 3;
-                if rows[row][val] != 0 || columns[col][val] != 0 || boxes[box_index][val] != 0 {
+        for i in 0..9 {
+            for j in 0..9 {
+                let value = board[i][j];
+                if value == '.' { continue; }
+                let idx = 1 << (value as usize - '1' as usize);
+                let box_index = (i / 3) * 3 + j / 3;
+                if rows[i] & idx != 0
+                    || columns[j] & idx != 0
+                    || boxes[box_index] & idx != 0 {
                     return false;
                 } else {
-                    rows[row][val] = 1;
-                    columns[col][val] = 1;
-                    boxes[box_index][val] = 1;
+                    rows[i] |= idx;
+                    columns[j] |= idx;
+                    boxes[box_index] |= idx;
                 }
             }
         }
